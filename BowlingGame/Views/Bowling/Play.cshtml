@@ -1,0 +1,33 @@
+﻿@model BowlingGame.Models.GameModel
+
+@{
+    ViewBag.Title = "Play";
+}
+
+<h2>Play Bowling Game</h2>
+
+<div class="float-left">
+    Total Score: @ViewBag.gameScore
+</div>
+
+@using (Html.BeginForm("NextPlay", "Bowling"))
+            {
+                <div style="width: 80px !important; float: left; padding: 30px; margin-right: 100px;">
+                    <input type="number" min="0" max="10" step="1" name="ball" style="width: 80px;">
+                    
+                    <input type="submit" />
+                </div>
+            }
+
+<div class="float-left" style="text-align: left;">
+    @foreach (var turn in Model.Throws)
+    {        
+                <div style="width: 130px !important; float: left; padding: 30px;">
+                    @Html.Raw("Frame") : @turn.frameNumber
+                    <input size="5" style="display: inline; width: 60px;" type="text" />
+                    <input size="5" style="display: inline; width: 40px;" type="text" />
+                    <input type="text" style="display: block; width: 100px;" value="@turn.score" />
+                </div>        
+    }
+</div>
+
