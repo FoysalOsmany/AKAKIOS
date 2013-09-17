@@ -7,7 +7,7 @@
 <h2>Play Bowling Game</h2>
 
 <div class="float-left">
-    Total Score: @ViewBag.gameScore
+    Total Score: @Model.Score
 </div>
 
 @using (Html.BeginForm("NextPlay", "Bowling"))
@@ -20,13 +20,13 @@
             }
 
 <div class="float-left" style="text-align: left;">
-    @foreach (var turn in Model.Throws)
+    @foreach (var turn in Model.ListRolls)
     {        
                 <div style="width: 130px !important; float: left; padding: 30px;">
-                    @Html.Raw("Frame") : @turn.frameNumber
+                    @Html.Raw("Frame") : @Model.Frame
                     <input size="5" style="display: inline; width: 60px;" type="text" />
                     <input size="5" style="display: inline; width: 40px;" type="text" />
-                    <input type="text" style="display: block; width: 100px;" value="@turn.score" />
+                    <input type="text" style="display: block; width: 100px;" value="@Model.Score" />
                 </div>        
     }
 </div>

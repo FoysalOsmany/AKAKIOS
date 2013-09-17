@@ -168,10 +168,16 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
-    <Compile Include="Models\BowlerModel.cs" />
     <Compile Include="Models\GameModel.cs" />
-    <Compile Include="Models\ThrowsModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\BaseServices.cs" />
+    <Compile Include="Services\BowlingGame.cs" />
+    <Compile Include="Services\ChainBowlingValidator.cs" />
+    <Compile Include="Services\CommonServices.cs" />
+    <Compile Include="Services\IServices.cs" />
+    <Compile Include="Services\ScoreDetails.cs" />
+    <Compile Include="Services\SpareServices.cs" />
+    <Compile Include="Services\StrikeServices.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />

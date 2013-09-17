@@ -1,52 +1,37 @@
 ﻿namespace BowlingGame.Controllers
 {
-    using System;
     using System.Web.Mvc;
     using Models;
+    using Services;
 
     public class BowlingController : Controller
     {
-        private GameModel game;
-        
-        public ActionResult Play() {
-            if (game == null)
-            {
-                game = new GameModel();
-            }
+        private readonly BowlingGame _game;
 
-            game.Throws = game.GetThrows();
-                
-            ViewBag.gameScore = game.Score;
+        private readonly GameModel gameModel;
+        public BowlingController()
+        {
+            gameModel = new GameModel();
+            _game = new BowlingGame();
+            
+        }
 
-            return View(game);
+        public ActionResult Play()
+        {
+            
+            _game.Roll(1);
+            _game.Score();
+
+            return View(gameModel);
         }
 
         [HttpPost]
-        public ActionResult NextPlay(GameModel game, int ball)
+        public ActionResult NextPlay(GameModel gameModel, int ball)
         {
-            if (game == null)
-            {
-                game = new GameModel();
-            }
-            
-            int ballStrikes = ball;
+            _game.Roll(ball);
+            _game.Score();
 
-            
-            game.Add(ballStrikes);
-
-            ViewBag.gameScore = game.Score;
-
-            var currentThrow = new ThrowsModel(
-                ballStrikes,
-                game.CurrentFrameNumber,
-                game.ScoreForFrame(game.CurrentFrameNumber)
-            );
-
-            game.CreateThrows(currentThrow);
-
-            game.Throws = game.GetThrows();
-
-            return View("Play", game);
+            return View("Play", gameModel);
         }
     }
 }
